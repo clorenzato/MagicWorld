@@ -10,5 +10,14 @@ public abstract class Personage {
 
     public Personage(int level) {
         this.level = level;
+        this.setLife(level);
+    }
+
+    public void setLife(int level) {
+        this.life = level * 5;
+    }
+
+    public int getLife() {
+        return this.life;
     }
 }

@@ -1,6 +1,6 @@
 package com.lorenzato.personnage;
 
-public class Personage {
+public abstract class Personage {
 
     protected int level;
     protected int life;
@@ -8,4 +8,7 @@ public class Personage {
     protected int agility;
     protected int intelligence;
 
+    public Personage(int level) {
+        this.level = level;
+    }
 }

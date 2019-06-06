@@ -22,9 +22,12 @@ public class Arena {
     }
 
     private void gameDescription() {
-        System.out.println("Bienvenu dans MagicWorld !!");
-        System.out.println("Ce jeux se joue à " + this.nbPlayer + "joueurs");
-        System.out.println("Niveau max = " + this.levelMax);
+        System.out.println("\n=====================================");
+        System.out.println("    !!Bienvenu dans MagicWorld !!    ");
+        System.out.println("-------------------------------------");
+        System.out.println("    Ce jeux se joue à " + this.nbPlayer + " joueurs.");
+        System.out.println("         Niveau max = " + this.levelMax + ".");
+        System.out.println("=====================================\n");
     }
 
     public void addPlayerInArena() {
@@ -39,7 +42,8 @@ public class Arena {
             boolean levelGood;
 
             do {
-                System.out.println("Joueur "+ (i+1) + ": Veuillez choisir la classe de votre personnage : ");
+                System.out.println("-------------------------------------");
+                System.out.println("Joueur "+ (i+1) + ": Veuillez choisir la classe de votre personnage :\n");
                 System.out.println("1 - Guerrier");
                 System.out.println("2 - Rôdeur");
                 System.out.println("3 - Mage");
@@ -53,7 +57,7 @@ public class Arena {
             } while(!choiceGood);
 
             do {
-                System.out.println("Veuillez choisir le niveau de votre personnage : ");
+                System.out.println("et choisir son niveau : ");
                 level = sc.nextInt();
                 levelGood = ((level >= 1) && (choice <= this.levelMax));
                 if (!levelGood) {
@@ -77,12 +81,5 @@ public class Arena {
                     break;
             }
         }
-    }
-
-    public List<Personage> getPersonages() {
-        for (Personage perso: personages) {
-            System.out.println(perso.getClass());
-        }
-        return personages;
     }
 }

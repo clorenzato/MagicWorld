@@ -1,6 +1,6 @@
 package com.lorenzato.personnage;
 
-public class Warrior extends Personage implements Attacks{
+public class Warrior extends Personage {
 
     public Warrior(int level) {
         super(level);

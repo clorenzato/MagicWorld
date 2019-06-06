@@ -1,6 +1,6 @@
 package com.lorenzato.personnage;
 
-public abstract class Personage {
+public abstract class Personage implements Attacks{
 
     protected int level;
     protected int life;

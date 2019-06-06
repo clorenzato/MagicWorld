@@ -1,6 +1,6 @@
 package com.lorenzato.personnage;
 
-public class Mage extends Personage implements Attacks{
+public class Mage extends Personage {
 
     public Mage(int level) {
         super(level);

@@ -1,6 +1,6 @@
 package com.lorenzato.personnage;
 
-public class Prowler extends Personage implements Attacks {
+public class Prowler extends Personage {
 
     public Prowler(int level) {
         super(level);

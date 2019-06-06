@@ -5,7 +5,8 @@ import com.lorenzato.arena.Arena;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Bienvenue dans MagiWorld !!");
-        Arena arene = new Arena;
+        Arena arena = new Arena(2,100);
+        arena.addPlayerInArena();
+        arena.getPersonages();
     }
 }

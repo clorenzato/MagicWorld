@@ -8,7 +8,7 @@ public abstract class Personage implements Attacks{
     Scanner sc = new Scanner(System.in);
 
     //Player attributes
-    private int level;
+    protected int level;
     protected int life;
     protected int strength;
     protected int agility;
@@ -24,14 +24,21 @@ public abstract class Personage implements Attacks{
     }
 
 
-    public void setLife(int level) {
-        this.life = level * 5;
-    }
-
     public int getLife() {
         return this.life;
     }
 
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getAgility() {
+        return agility;
+    }
+
+    public int getIntelligence() {
+        return intelligence;
+    }
 
     public int NbAttributeAvailable() {
         return this.level - (this.strength + this.agility + this.intelligence);
@@ -44,24 +51,24 @@ public abstract class Personage implements Attacks{
             int attribute = 0;
             boolean attributeGood;
 
-            System.out.println("Veuillez choisir l'"+ attributeName +" du personnage (0-"+ NbAttributeAvailable() +"; MAX = 100):");
             do {
+
                 boolean responseIsANumber;
 
                 do {
                     try {
+                        boolean isVowel = "aeiouyAEIOUY".contains(Character.toString(attributeName.charAt(0)));
+
+                        if (isVowel)
+                            System.out.println("Veuillez re-choisir l'"+ attributeName +" du personnage (0-"+ NbAttributeAvailable() +"; MAX = 100):");
+                        else
+                            System.out.println("Veuillez re-choisir la "+ attributeName +" du personnage (0-"+ NbAttributeAvailable() +"; MAX = 100):");
+
                         attribute = this.sc.nextInt();
                         responseIsANumber = true;
                         attributeGood = ((attribute >= 0) && (attribute <= NbAttributeAvailable()));
 
-                        if (!attributeGood) {
-                        System.out.println("Vous n'avez pas assez de points d'attributs en reserve ("+ NbAttributeAvailable() +" pts restants)");
-                        boolean isVoyel = "aeiouyAEIOUY".contains(Character.toString(attributeName.charAt(0)));
-                        if (isVoyel)
-                            System.out.println("Veuillez re-choisir l'"+ attributeName +" du personnage (0-"+ NbAttributeAvailable() +"; MAX = 100):");
-                        else
-                            System.out.println("Veuillez re-choisir la'"+ attributeName +" du personnage (0-"+ NbAttributeAvailable() +"; MAX = 100):");
-                        }
+
 
                     } catch (InputMismatchException e) {
                         sc.next();
@@ -71,10 +78,11 @@ public abstract class Personage implements Attacks{
                     }
 
                 }while (!responseIsANumber);
+
             } while(!attributeGood);
 
             if (attribute <= 100) {
-                System.out.println("Retourne agility = " + attribute);
+                System.out.println("Return "+ attributeName + " = " + attribute);
                 return attribute;
             }
             else {

@@ -7,10 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.InputMismatchException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PersonageTest {
 
@@ -30,9 +28,32 @@ class PersonageTest {
 
     @Test
     void Given_levelOf100_When_GetLife_Then_LifeIs500() {
-        System.setIn(new ByteArrayInputStream(String.format("30%n30%n40%n").getBytes()));
+        System.setIn(new ByteArrayInputStream(String.format("10%n20%n30%n").getBytes()));
         Personage mage = new Mage(100);
         assertEquals(500,mage.getLife());
+    }
+
+    @Test
+    void Given_StrengthOf10_When_GetStrength_Then_StrengthIs10() {
+        System.setIn(new ByteArrayInputStream(String.format("10%n20%n30%n").getBytes()));
+        Personage mage = new Mage(100);
+        assertEquals(10,mage.getStrength());
+
+    }
+
+    @Test
+    void Given_AgilityOf20_When_GetAgility_Then_AgilityIs20() {
+        System.setIn(new ByteArrayInputStream(String.format("10%n20%n30%n").getBytes()));
+        Personage mage = new Mage(100);
+        assertEquals(20,mage.getAgility());
+
+    }
+
+    @Test
+    void Given_IntelligenceOf30_When_GetIntelligence_Then_IntelligenceIs30() {
+        System.setIn(new ByteArrayInputStream(String.format("10%n20%n30%n").getBytes()));
+        Personage mage = new Mage(100);
+        assertEquals(30 ,mage.getIntelligence());
     }
 }
 

@@ -2,8 +2,8 @@ package com.lorenzato.personnage;
 
 public class Mage extends Personage {
 
-    public Mage(int level) {
-        super(level);
+    public Mage(int level, int strength, int agility, int intelligence) {
+        super(level, strength, agility, intelligence);
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.lorenzato.personnage.Prowler;
 import com.lorenzato.personnage.Warrior;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -36,8 +37,8 @@ public class Arena {
 
         for (int i = 0; i < this.nbPlayer; i++) {
 
-            int level;
-            int choice;
+            int choiceLevel = 0;
+            int choiceClass = 0;
             boolean choiceGood;
             boolean levelGood;
 
@@ -48,8 +49,21 @@ public class Arena {
                 System.out.println("2 - Rôdeur");
                 System.out.println("3 - Mage");
 
-                choice = sc.nextInt();
-                choiceGood = ((choice >= 1) && (choice <= 3));
+                boolean responseIsANumber;
+                do {
+                    try {
+                        choiceClass = sc.nextInt();
+                        responseIsANumber = true;
+
+                    } catch (InputMismatchException e) {
+                        sc.next();
+                        responseIsANumber = false;
+                        System.err.println("Veulliez saisir un chiffre, svp");
+                    }
+
+                } while (!responseIsANumber);
+
+                choiceGood = ((choiceClass >= 1) && (choiceClass <= 3));
 
                 if (!choiceGood) {
                     System.out.println("Vous n'avez pas choisi de class parmi les choix proposés");
@@ -58,26 +72,42 @@ public class Arena {
 
             do {
                 System.out.println("et choisir son niveau : ");
-                level = sc.nextInt();
-                levelGood = ((level >= 1) && (choice <= this.levelMax));
+
+
+
+                boolean responseIsANumber;
+                do {
+                    try {
+                        choiceLevel = sc.nextInt();
+                        responseIsANumber = true;
+
+                    } catch (InputMismatchException e) {
+                        sc.next();
+                        responseIsANumber = false;
+                        System.err.println("Veulliez saisir un nombre, svp");
+                    }
+
+                } while (!responseIsANumber);
+
+                levelGood = ((choiceLevel >= 1) && (choiceClass <= this.levelMax));
                 if (!levelGood) {
-                    if (level < 0)
+                    if (choiceLevel < 0)
                         System.out.println("Veuillez choisir un niveau > 0");
-                    else if (level > this.levelMax)
-                        level = this.levelMax;
+                    else if (choiceLevel > this.levelMax)
+                        choiceLevel = this.levelMax;
                 }
 
             } while(!levelGood);
 
-            switch (choice){
+            switch (choiceClass){
                 case 1 :
-                    personages.add(new Warrior(level));
+                    personages.add(new Warrior(choiceLevel));
                     break;
                 case 2 :
-                    personages.add(new Prowler(level));
+                    personages.add(new Prowler(choiceLevel));
                     break;
                 case 3 :
-                    personages.add(new Mage(level));
+                    personages.add(new Mage(choiceLevel));
                     break;
             }
         }

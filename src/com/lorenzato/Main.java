@@ -1,9 +1,6 @@
 package com.lorenzato;
 
 import com.lorenzato.arena.Arena;
-import com.lorenzato.personnage.Personage;
-
-import java.util.List;
 
 public class Main {
 

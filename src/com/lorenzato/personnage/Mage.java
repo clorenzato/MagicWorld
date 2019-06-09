@@ -24,13 +24,16 @@ public class Mage extends Personage {
         //Attaque Spéciale - Soin :
         // Le joueur soigne sa vie et regagne sa quantité d’intelligence fois 2 en points de vie.
         // Attention, il ne peut pas avoir plus de vie qu’il n’en avait au départ.
+        System.out.println("Attaque Spéciale - Soin :");
+        target.receivedDamage(0);
         this.life += (this.intelligence * 2);
-        if (this.life > this.maxLife) this.life = this.maxLife;
-
+        if (this.life > (this.level*5)) this.life = this.level*5;
     }
 
     @Override
-    public void persoDescription(int index) {
+    public void persoDescription(int indexPlayer) {
+
+
 
     }
 

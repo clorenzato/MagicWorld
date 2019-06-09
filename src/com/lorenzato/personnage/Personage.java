@@ -4,12 +4,9 @@ import java.util.Scanner;
 
 public abstract class Personage implements Attacks{
 
-    Scanner sc = new Scanner(System.in);
-
     //Player attributes
     protected int level;
     protected int life;
-    protected int maxLife;
     protected int strength;
     protected int agility;
     protected int intelligence;
@@ -18,7 +15,6 @@ public abstract class Personage implements Attacks{
     public Personage(int level, int strength, int agility, int intelligence) {
         this.level = level;
         this.life = level * 5;
-        this.maxLife = level * 5;
         this.strength = strength;
         this.agility = agility;
         this.intelligence = intelligence;

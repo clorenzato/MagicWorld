@@ -14,12 +14,12 @@ class PersonageTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     @BeforeEach
-    public void setUpStreams() {
+    void setUpStreams() {
         System.setOut(new PrintStream(outContent));
     }
 
     @AfterEach
-    public void restoreStreams() {
+    void restoreStreams() {
         System.setOut(System.out);
     }
 

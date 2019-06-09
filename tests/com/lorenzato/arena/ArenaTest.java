@@ -15,16 +15,16 @@ class ArenaTest {
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 
     @BeforeEach
-    public void setUpStreams() {
+    void setUpStreams() {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
     }
 
 
     @AfterEach
-    public void restoreStreams() {
-        System.setOut(System.out);
-        System.setErr(System.err);
+    void restoreStreams() {
+        //System.setOut(System.out);
+        //System.setErr(System.err);
     }
 
 
@@ -50,6 +50,12 @@ class ArenaTest {
     }
 
     @Test
-    void chooseAttribute() {
+    void Given_GoodEntries_When_NoAtributesAvailable_Then_ProposeClassinGoodOrder() {
+        System.setIn(new ByteArrayInputStream(String.format("20%n").getBytes()));
+        Arena arena = new Arena(1,100);
+        int valueAtribute = arena.chooseAttribute("Attribute");
+        String[] output = outContent.toString().replace("\r\n", "\n").split("\n");
+        assertEquals("Plus de points d'attributs; Attribute = 0", output[8]);
+        assertEquals(0, valueAtribute);
     }
 }

@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class Arena {
 
-    Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
 
     // Arena parameters :
 
@@ -43,7 +43,6 @@ public class Arena {
 
             int playerClass = choosePersoClass(i);
             int choiceLevel = choosePersoLevel(playerClass);
-            this.attributesAvailable = choiceLevel;
             int strength = chooseAttribute("Force");
             int agility = chooseAttribute("Agilité");
             int intelligence = chooseAttribute("Intelligence");
@@ -100,7 +99,7 @@ public class Arena {
     return playerClass;
     }
 
-    private int choosePersoLevel(int playerClass) {
+    public int choosePersoLevel(int playerClass) {
 
         int playerLevel = 0;
         boolean levelGood;
@@ -121,11 +120,12 @@ public class Arena {
             levelGood = ((playerLevel >= 1) && (playerClass <= this.levelMax));
             if (!levelGood) {
                 if (playerLevel < 0)
-                    System.out.println("Veuillez choisir un niveau > 0");
+                    System.err.println("Veuillez choisir un niveau > 0");
                 else if (playerLevel > this.levelMax)
                     playerLevel = this.levelMax;
             }
         } while(!levelGood);
+        this.attributesAvailable = playerLevel;
         return playerLevel;
     }
 
@@ -154,23 +154,23 @@ public class Arena {
 
                         if (attribute < 0) {
                             if (isVowel)
-                                System.out.println("L'"+ attributeName +" doit être >= 0");
+                                System.err.println("L'"+ attributeName +" doit être >= 0");
                             else
-                                System.out.println("La "+ attributeName +" doit être >= 0");
+                                System.err.println("La "+ attributeName +" doit être >= 0");
 
                         } else if (attribute > 100) {
                             if (isVowel)
-                                System.out.println("L'"+ attributeName +" doit être <= 100");
+                                System.err.println("L'"+ attributeName +" doit être <= 100");
                             else
-                                System.out.println("La "+ attributeName +" doit être <= 100");
+                                System.err.println("La "+ attributeName +" doit être <= 100");
                         } else if ((attribute > attributesAvailable))
-                            System.out.println("Pas assez de point d'atribut! ");
+                            System.err.println("Pas assez de point d'atribut! ");
 
                     } catch (InputMismatchException e) {
                         sc.next();
                         responseIsANumber = false;
                         attributeGood = false;
-                        System.out.println("Veulliez saisir un nombre, svp");
+                        System.err.println("Veulliez saisir un nombre, svp");
                     }
                 }while (!responseIsANumber);
             } while(!attributeGood);

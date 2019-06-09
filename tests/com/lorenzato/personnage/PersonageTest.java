@@ -49,5 +49,63 @@ class PersonageTest {
         Mage mage = new Mage(100,20,20,30);
         assertEquals(30 ,mage.getIntelligence());
     }
+
+    @Test
+    void Given_Warrior_When_SpecialAttack_Then_TargetLoseTwiceWarriorStrength() {
+        Mage target = new Mage(100,0,0,0);
+        Warrior warrior = new Warrior(100, 50,0,0);
+        assertEquals(500 ,target.getLife());
+        warrior.specialAttack(target);
+        assertEquals(500-100 ,target.getLife(),1);
+    }
+
+    @Test
+    void Given_Warrior_When_SpecialAttack_Then_WarriortLoseHalfOfHisStrength() {
+        Mage target = new Mage(100,0,0,0);
+        Warrior warrior = new Warrior(100, 50,0,0);
+        assertEquals( 50 ,warrior.getStrength(), 1);
+        warrior.specialAttack(target);
+        assertEquals( 25 ,warrior.getStrength(), 1);
+        warrior.specialAttack(target);
+        assertEquals( 12 ,warrior.getStrength(),1);
+        warrior.specialAttack(target);
+        assertEquals( 6 ,warrior.getStrength(),1);
+    }
+
+    @Test
+    void Given_ProwlerLevel100_When_SpecialAttack_Then_TargetDoNotLoseLifeAndProwlerWin50OfAgility() {
+        Mage target = new Mage(100,0,0,0);
+        Prowler prowler = new Prowler(100, 0,50,0);
+        assertEquals(500 ,target.getLife());
+        prowler.specialAttack(target);
+        assertEquals(500 ,target.getLife(),1); // The target should not lose Life
+        assertEquals(50+(100/2) ,prowler.getAgility(),1); // Agility += Level/2
+    }
+
+
+    @Test
+    void Given_Mage_When_SpecialAttack_Then_TargetDoNotLoseLifeAndMageWin100OfLife() {
+        Warrior target = new Warrior(100,100,0,0);
+        Mage mage = new Mage(100, 0,0,50);
+        assertEquals(500 ,target.getLife());
+        target.basicAttack(mage);
+        assertEquals(400 ,mage.getLife(),1);
+        mage.specialAttack(target);
+        assertEquals(500 ,target.getLife(),1); //Target do not lose life
+        assertEquals(500 ,mage.getLife(),1);
+    }
+
+    @Test
+    void Given_Mage_When_SpecialAttack_Then_WarriortLoseHalfOfHisStrength() {
+        Mage target = new Mage(100,0,0,0);
+        Warrior warrior = new Warrior(100, 50,0,0);
+        assertEquals( 50 ,warrior.getStrength(), 1);
+        warrior.specialAttack(target);
+        assertEquals( 25 ,warrior.getStrength(), 1);
+        warrior.specialAttack(target);
+        assertEquals( 12 ,warrior.getStrength(),1);
+        warrior.specialAttack(target);
+        assertEquals( 6 ,warrior.getStrength(),1);
+    }
 }
 

@@ -41,8 +41,8 @@ public class Arena {
 
         for (int i = 0; i < this.nbPlayer; i++) {
 
-            int playerClass = choosePlayerClass(i);
-            int choiceLevel = choosePlayerLevel(playerClass);
+            int playerClass = choosePersoClass(i);
+            int choiceLevel = choosePersoLevel(playerClass);
             this.attributesAvailable = choiceLevel;
             int strength = chooseAttribute("Force");
             int agility = chooseAttribute("Agilité");
@@ -63,14 +63,14 @@ public class Arena {
     }
 
 
-    public int choosePlayerClass(int index) {
+    public int choosePersoClass(int indexPlayer) {
 
         int playerClass = 0;
         boolean choiceGood;
 
         do {
             System.out.println("-------------------------------------");
-            System.out.println("Joueur "+ (index+1) + ": Veuillez choisir la classe de votre personnage :\n");
+            System.out.println("Joueur "+ (indexPlayer+1) + ": Veuillez choisir la classe de votre personnage :\n");
             System.out.println("1 - Guerrier");
             System.out.println("2 - Rôdeur");
             System.out.println("3 - Mage");
@@ -92,7 +92,7 @@ public class Arena {
             choiceGood = ((playerClass >= 1) && (playerClass <= 3));
 
             if (!choiceGood) {
-                System.out.println("Vous n'avez pas choisi de class parmi les choix proposés");
+                System.err.println("Vous n'avez pas choisi de class parmi les choix proposés");
             }
         } while(!choiceGood);
 
@@ -100,14 +100,12 @@ public class Arena {
     return playerClass;
     }
 
-    private int choosePlayerLevel(int playerClass) {
+    private int choosePersoLevel(int playerClass) {
 
         int playerLevel = 0;
         boolean levelGood;
-
         do {
             System.out.println("et choisir son niveau : ");
-
             boolean responseIsANumber;
             do {
                 try {
@@ -119,9 +117,7 @@ public class Arena {
                     responseIsANumber = false;
                     System.err.println("Veulliez saisir un nombre, svp");
                 }
-
             } while (!responseIsANumber);
-
             levelGood = ((playerLevel >= 1) && (playerClass <= this.levelMax));
             if (!levelGood) {
                 if (playerLevel < 0)
@@ -129,9 +125,7 @@ public class Arena {
                 else if (playerLevel > this.levelMax)
                     playerLevel = this.levelMax;
             }
-
         } while(!levelGood);
-
         return playerLevel;
     }
 
@@ -144,9 +138,7 @@ public class Arena {
             boolean attributeGood;
 
             do {
-
                 boolean responseIsANumber;
-
                 do {
                     try {
                         boolean isVowel = "aeiouyAEIOUY".contains(Character.toString(attributeName.charAt(0)));
@@ -171,9 +163,8 @@ public class Arena {
                                 System.out.println("L'"+ attributeName +" doit être <= 100");
                             else
                                 System.out.println("La "+ attributeName +" doit être <= 100");
-                        } else if ((attribute >= attributesAvailable) && (attributesAvailable != 0))
+                        } else if ((attribute > attributesAvailable))
                             System.out.println("Pas assez de point d'atribut! ");
-                        // TODO: 07/06/19 Check the condition 
 
                     } catch (InputMismatchException e) {
                         sc.next();
@@ -181,11 +172,8 @@ public class Arena {
                         attributeGood = false;
                         System.out.println("Veulliez saisir un nombre, svp");
                     }
-
                 }while (!responseIsANumber);
-
             } while(!attributeGood);
-
             if (attribute <= 100) {
                 attributesAvailable -= attribute;
                 return attribute;

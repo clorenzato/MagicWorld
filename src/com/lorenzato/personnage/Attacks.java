@@ -1,6 +1,6 @@
 package com.lorenzato.personnage;
 
 public interface Attacks {
-    void basicAttack(Personage personage);
-    void specialAttack(Personage personage);
+    void basicAttack(Personage target);
+    void specialAttack(Personage target);
 }

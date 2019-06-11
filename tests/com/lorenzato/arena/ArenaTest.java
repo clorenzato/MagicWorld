@@ -58,4 +58,9 @@ class ArenaTest {
         assertEquals("Plus de points d'attributs; Attribute = 0", output[8]);
         assertEquals(0, valueAtribute);
     }
+
+    @Test
+    void letsFighttest() {
+
+    }
 }

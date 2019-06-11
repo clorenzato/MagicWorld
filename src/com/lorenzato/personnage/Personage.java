@@ -19,7 +19,7 @@ public abstract class Personage implements Attacks{
         this.agility = agility;
         this.intelligence = intelligence;
     }
-    public abstract void persoDescription(int index);
+
 
     public int getLife() {
         return this.life;
@@ -37,26 +37,16 @@ public abstract class Personage implements Attacks{
         return intelligence;
     }
 
+
+
     public void receivedDamage(int damage) {
         this.life -= damage;
         if (this.life <= 0) {
             this.life = 0;
-            isDead();
         }
     }
 
-    private void isDead() {
-        // We stop the game.
-    }
-
-    @Override
-    public String toString() {
-        return "Personage{" +
-                "level=" + level +
-                ", life=" + life +
-                ", strength=" + strength +
-                ", agility=" + agility +
-                ", intelligence=" + intelligence +
-                '}';
-    }
+    public abstract boolean isDead(int indexPlayer);
+    public abstract void persoDescription(int indexPlayer);
+    public abstract String getPersoName();
 }

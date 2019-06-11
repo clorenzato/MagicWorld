@@ -21,7 +21,6 @@ public class Warrior extends Personage {
         target.receivedDamage(this.strength);
     }
 
-
     @Override
     public void specialAttack(Personage target) {
         // Attaque Spéciale - Coup de Rage :
@@ -30,14 +29,23 @@ public class Warrior extends Personage {
         System.out.print("Attaque Spéciale - Coup de Rage : ");
         target.receivedDamage(this.strength * 2);
         this.strength /= 2;
-
     }
-
 
     @Override
     public void persoDescription(int indexPlayer) {
-
+        System.out.println(this.persoName + " je suis le Guerrier Joueur " + indexPlayer + " niveau " + this.level +
+                " je possède " + this.life + "de vitalité, " + this.strength + " de force, " + this.agility +
+                " d'agilité et " + this.intelligence + " d'intelligence !");
     }
 
+    @Override
+    public String getPersoName() {
+        return this.persoName;
+    }
 
+    @Override
+    public boolean isDead(int indexPlayer) {
+        System.out.println("Le Guerrier " + this.persoName + " du joueur " + indexPlayer + " est mort !");
+        return this.life == 0;
+    }
 }

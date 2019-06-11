@@ -14,14 +14,14 @@ public class Mage extends Personage {
 
     @Override
     public void basicAttack(Personage target) {
-        //Attaque Basique - Boule de Feu :
+        // Attaque Basique - Boule de Feu :
         // Effectue des dommages égaux à l’intelligence du joueur sur l’adversaire.
         target.receivedDamage(this.intelligence);
     }
 
     @Override
     public void specialAttack(Personage target) {
-        //Attaque Spéciale - Soin :
+        // Attaque Spéciale - Soin :
         // Le joueur soigne sa vie et regagne sa quantité d’intelligence fois 2 en points de vie.
         // Attention, il ne peut pas avoir plus de vie qu’il n’en avait au départ.
         System.out.println("Attaque Spéciale - Soin :");
@@ -32,9 +32,18 @@ public class Mage extends Personage {
 
     @Override
     public void persoDescription(int indexPlayer) {
-
-
-
+        System.out.println(this.persoName + " je suis le Mage Joueur " + indexPlayer + " niveau " + this.level +
+                " je possède " + this.life + "de vitalité, " + this.strength + " de force, " + this.agility +
+                " d'agilité et " + this.intelligence + " d'intelligence !");
     }
 
+    @Override
+    public boolean isDead(int indexPlayer) {
+        System.out.println("Le Mage " + this.persoName + " du joueur " + indexPlayer + " est mort !");
+        return this.life == 0;
+    }
+    @Override
+    public String getPersoName() {
+        return this.persoName;
+    }
 }

@@ -5,6 +5,7 @@ import com.lorenzato.personnage.Personage;
 import com.lorenzato.personnage.Prowler;
 import com.lorenzato.personnage.Warrior;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -13,8 +14,6 @@ import java.util.Scanner;
 public class Arena {
 
     private Scanner sc = new Scanner(System.in);
-
-    // Arena parameters :
 
     private int nbPlayer;
     private int levelMax;
@@ -39,7 +38,7 @@ public class Arena {
 
     public void addPlayersInArena() {
 
-        for (int i = 0; i < this.nbPlayer; i++) {
+        for (int i = 1; i < this.nbPlayer+1; i++) {
 
             int playerClass = choosePersoClass(i);
             int choiceLevel = choosePersoLevel(playerClass);
@@ -49,18 +48,23 @@ public class Arena {
 
             switch (playerClass){
                 case 1 :
-                    personages.add(new Warrior(choiceLevel,strength,agility,intelligence));
+                    Warrior warrior = new Warrior(choiceLevel,strength,agility,intelligence);
+                    warrior.persoDescription(i);
+                    personages.add(warrior);
                     break;
                 case 2 :
-                    personages.add(new Prowler(choiceLevel,strength,agility,intelligence));
+                    Prowler prowler = new Prowler(choiceLevel,strength,agility,intelligence);
+                    prowler.persoDescription(i);
+                    personages.add(prowler);
                     break;
                 case 3 :
-                    personages.add(new Mage(choiceLevel,strength,agility,intelligence));
+                    Mage mage = new Mage(choiceLevel,strength,agility,intelligence);
+                    mage.persoDescription(i);
+                    personages.add(mage);
                     break;
             }
         }
     }
-
 
     public int choosePersoClass(int indexPlayer) {
 
@@ -69,7 +73,7 @@ public class Arena {
 
         do {
             System.out.println("-------------------------------------");
-            System.out.println("Joueur "+ (indexPlayer+1) + ": Veuillez choisir la classe de votre personnage :\n");
+            System.out.println("Joueur "+ (indexPlayer) + ": Veuillez choisir la classe de votre personnage :\n");
             System.out.println("1 - Guerrier");
             System.out.println("2 - Rôdeur");
             System.out.println("3 - Mage");
@@ -129,7 +133,6 @@ public class Arena {
         return playerLevel;
     }
 
-
     public int chooseAttribute(String attributeName) {
 
         if (attributesAvailable != 0) {
@@ -186,5 +189,27 @@ public class Arena {
             System.out.println("Plus de points d'attributs; " + attributeName + " = 0");
             return 0;
         }
+    }
+
+    public String getPersoNameFromList(int indexPlayer){
+        return this.personages.get(indexPlayer-1).getPersoName();
+    }
+
+    public void chooseAttack(int indexPlayer){
+        System.out.println(getPersoNameFromList(indexPlayer) + " (Joueur "+ indexPlayer +") :");
+        System.out.println("1 - A");
+        //System.out.println(this.personages.get(indexPlayer-1).getClass());
+    }
+
+    public void letsFight(){
+        System.out.println("Que le combat commence !");
+        boolean fightIsOver = false;
+        int fightTurn = 0;
+        do {
+            chooseAttack(fightTurn % 2 + 1);
+            //System.out.println(fightTurn % 2 + 1);
+            if (fightTurn > 10) fightIsOver = true;
+            fightTurn += 1;
+        } while (!fightIsOver);
     }
 }

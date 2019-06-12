@@ -43,10 +43,8 @@ public class Arena {
         boolean responseIsANumber;
         do {
             try {
-
                 numberChosen = sc.nextInt();
                 responseIsANumber = true;
-
             } catch (InputMismatchException e) {
                 sc.next();
                 responseIsANumber = false;
@@ -74,17 +72,17 @@ public class Arena {
             switch (playerClass){
                 case 1 :
                     Warrior warrior = new Warrior(choiceLevel,strength,agility,intelligence);
-                    warrior.persoDescription(i);
+                    warrior.personageDescription(i);
                     personages.add(warrior);
                     break;
                 case 2 :
                     Prowler prowler = new Prowler(choiceLevel,strength,agility,intelligence);
-                    prowler.persoDescription(i);
+                    prowler.personageDescription(i);
                     personages.add(prowler);
                     break;
                 case 3 :
                     Mage mage = new Mage(choiceLevel,strength,agility,intelligence);
-                    mage.persoDescription(i);
+                    mage.personageDescription(i);
                     personages.add(mage);
                     break;
             }
@@ -135,10 +133,10 @@ public class Arena {
 
             levelGood = ((playerLevel >= 1) && (playerLevel <= this.levelMax));
             if (!levelGood) {
-                if (playerLevel <= 0)
+                if (playerLevel < 0)
                     System.err.println("Veuillez choisir un niveau > 0");
                 else if (playerLevel > this.levelMax)
-                    System.err.println("Veuillez choisir un niveau < " + this.levelMax);
+                    System.err.println("Veuillez choisir un niveau < "+ this.levelMax);
             }
 
         } while(!levelGood);
@@ -203,7 +201,7 @@ public class Arena {
      * @return return the name of personnage of the player indexPlayer.
      */
     private String getPersonageNameFromList(int indexPlayer){
-        return this.personages.get(indexPlayer-1).getPersoName();
+        return this.personages.get(indexPlayer-1).getPersonageName();
     }
 
 

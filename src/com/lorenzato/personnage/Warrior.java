@@ -42,7 +42,7 @@ public class Warrior extends Personage {
      * @param indexPlayer L'index du joueur dont le personnage est décrit.
      */
     @Override
-    public void persoDescription(int indexPlayer) {
+    public void personageDescription(int indexPlayer) {
         System.out.println(this.personageName + " je suis le Guerrier du Joueur " + indexPlayer + ", de niveau " + this.level +
                 ". Je possède " + this.life + " de vitalité, " + this.strength + " de force, " + this.agility +
                 " d'agilité et " + this.intelligence + " d'intelligence !");

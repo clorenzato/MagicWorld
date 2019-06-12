@@ -1,6 +1,8 @@
 package com.lorenzato.arena;
 
-import org.junit.jupiter.api.AfterEach;
+import com.lorenzato.exeptions.NoPersonnageException;
+
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,19 +22,17 @@ class ArenaTest {
         System.setErr(new PrintStream(errContent));
     }
 
-
     @AfterEach
     void restoreStreams() {
-        //System.setOut(System.out);
-        //System.setErr(System.err);
+        System.setOut(System.out);
+        System.setErr(System.err);
     }
 
-
     @Test
-    void Given_GoodEntries_When_SelectPersoClass_Then_ProposeClassinGoodOrder() {
+    void Given_GoodEntries_When_SelectPersonageClass_Then_ProposeClassInGoodOrder() {
         System.setIn(new ByteArrayInputStream(String.format("2%n100%n20%n20%n20%n").getBytes()));
         Arena arena = new Arena(1,100);
-        arena.choosePersoClass(1);
+        arena.choosePersonageClass(1);
         String[] output = outContent.toString().replace("\r\n", "\n").split("\n");
         assertEquals("1 - Guerrier", output[11]);
         assertEquals("2 - Rôdeur", output[12]);
@@ -40,27 +40,38 @@ class ArenaTest {
     }
 
     @Test
-    void Given_BadEntries_When_SelectPersoClass_Then_CatchErrs() {
+    void Given_BadEntries_When_SelectPersonageClass_Then_CatchErrs() {
         System.setIn(new ByteArrayInputStream(String.format("a%n25%n2%n100%n20%n20%n20%n").getBytes()));
         Arena arena = new Arena(1,100);
-        arena.choosePersoClass(1);
-        String[] errput = errContent.toString().replace("\r\n", "\n").split("\n");
-        assertEquals("Veulliez saisir un chiffre, svp", errput[0]);
-        assertEquals("Vous n'avez pas choisi de class parmi les choix proposés", errput[1]);
+        arena.choosePersonageClass(1);
+        String[] errOutput = errContent.toString().replace("\r\n", "\n").split("\n");
+        assertEquals("Veuillez saisir un nombre, svp", errOutput[0]);
+        assertEquals("Vous n'avez pas choisi de class parmi les choix proposés", errOutput[1]);
     }
 
     @Test
-    void Given_GoodEntries_When_NoAtributesAvailable_Then_ProposeClassinGoodOrder() {
+    void Given_GoodEntries_When_ChooseAttributeNoAttributeAvailable_Then_ProposeClassInGoodOrder() {
         System.setIn(new ByteArrayInputStream(String.format("20%n").getBytes()));
         Arena arena = new Arena(1,100);
-        int valueAtribute = arena.chooseAttribute("Attribute");
+        int valueAttribute = arena.chooseAttribute("AttributeName");
         String[] output = outContent.toString().replace("\r\n", "\n").split("\n");
-        assertEquals("Plus de points d'attributs; Attribute = 0", output[8]);
-        assertEquals(0, valueAtribute);
+        assertEquals("Plus de point d'attribut; AttributeName = 0", output[8]);
+        assertEquals(0, valueAttribute);
     }
 
     @Test
-    void letsFighttest() {
+    void Given_ALetterAndANumber_When_CallingChooseNumber_Then_ReceiveAnErrorMessageReturnTheGoodNumber() {
+        System.setIn(new ByteArrayInputStream(String.format("a%n25%n").getBytes()));
+        Arena arena = new Arena(1,100);
+        int numberChosen = arena.chooseNumber();
+        String[] errOutput = errContent.toString().replace("\r\n", "\n").split("\n");
+        assertEquals(25,numberChosen);
+        assertEquals("Veuillez saisir un nombre, svp",errOutput[0]);
+    }
 
+    @Test
+    void Given_NoPersonageSelected_When_CallingLetsFight_Then_ThrowExceptionNoPersonnageException(){
+        Arena arena = new Arena(1,100);
+        assertThrows(NoPersonnageException.class, arena::letsFight);
     }
 }

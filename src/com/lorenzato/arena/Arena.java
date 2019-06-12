@@ -278,7 +278,7 @@ public class Arena {
 
     /**
      * @param fightTurn the turn number (One player is attacked during each turn)
-     * @return the index of the Player that will be attacked
+     * @return the index of the Player that will be attacked.
      */
     private int getTargetIndex(int fightTurn) {
         int target = fightTurn % this.nbPlayer + 2;

@@ -1,19 +1,16 @@
 package com.lorenzato.personnage;
 
-import java.util.Scanner;
-
 public abstract class Personage implements Attacks{
 
-    //Player attributes
-    protected int level;
-    protected int life;
-    protected int strength;
-    protected int agility;
-    protected int intelligence;
-    protected String personageName;
+    int level;
+    int life;
+    int strength;
+    int agility;
+    int intelligence;
+    String personageName;
     AttacksType attacksType;
 
-    public Personage(int level, int strength, int agility, int intelligence) {
+    Personage(int level, int strength, int agility, int intelligence) {
         this.level = level;
         this.life = level * 5;
         this.strength = strength;
@@ -22,24 +19,24 @@ public abstract class Personage implements Attacks{
     }
 
 
-    public int getLife() {
+    int getLife() {
         return this.life;
     }
 
-    public int getStrength() {
+    int getStrength() {
         return strength;
     }
 
-    public int getAgility() {
+    int getAgility() {
         return agility;
     }
 
-    public int getIntelligence() {
+    int getIntelligence() {
         return intelligence;
     }
 
 
-    public String getPersoName() {
+    public String getPersonageName() {
         return this.personageName;
     }
 
@@ -50,12 +47,11 @@ public abstract class Personage implements Attacks{
             this.life = 0;
         }
         if (damage != 0) {
-            System.out.println(getPersoName() + " à reçu " + damage +" de dommages ");
+            System.out.println(this.personageName + " à reçu " + damage +" de dommages ");
             if (this.life != 0)
                 System.out.println("Il lui reste : " + this.life + " / " + (this.level*5) + " pts de vie");
         }
     }
 
-    public abstract void persoDescription(int indexPlayer);
-
+    public abstract void personageDescription(int indexPlayer);
 }

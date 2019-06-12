@@ -17,7 +17,6 @@ public class Arena {
     private List<Personage> personages = new ArrayList<>();
     private int attributesAvailable;
 
-
     public Arena(int nbPlayer, int levelMax) {
         this.nbPlayer = nbPlayer;
         this.levelMax = levelMax;
@@ -60,7 +59,7 @@ public class Arena {
 
     /**
      * Add as many Personage in the arena as the number of player. Call all function needed to construct a Player and
-     * add it to the list
+     * add it to the list.
      */
     public void addPlayersInArena() {
 
@@ -95,7 +94,7 @@ public class Arena {
     /**
      * Allow for choosing the the class of the personage of the players.
      * @param indexPlayer The number of the player e.g. "Joueur indexPlayer" == "Joueur 1" if indexPlayer = 1.
-     * @return The chosen Class (e.g. 1 -> Guerrier)
+     * @return The chosen Class (e.g. 1 -> Guerrier).
      */
     int choosePersonageClass(int indexPlayer) {
 
@@ -123,7 +122,7 @@ public class Arena {
 
     /**
      * Allow for choosing the the level of the personage of the different players.
-     * @return The chosen Level (from 1 to 100)
+     * @return The chosen Level (from 1 to 100).
      */
     private int choosePersonageLevel() {
 
@@ -150,7 +149,7 @@ public class Arena {
     /**
      * Allow for select the value of a given (attributeName) attribute
      * @param attributeName The Name of the attribute to display to the user
-     * @return the value of the attribute (0-100)
+     * @return the value of the attribute (0-100).
      */
     int chooseAttribute(String attributeName) {
 
@@ -199,11 +198,19 @@ public class Arena {
         }
     }
 
-
+    /**
+     * @param indexPlayer The number of the player e.g. "Joueur indexPlayer" == "Joueur 1" if indexPlayer = 1.
+     * @return return the name of personnage of the player indexPlayer.
+     */
     private String getPersonageNameFromList(int indexPlayer){
         return this.personages.get(indexPlayer-1).getPersoName();
     }
 
+
+     /**
+     * @param indexPlayer The number of the player e.g. "Joueur indexPlayer" == "Joueur 1" if indexPlayer = 1.
+     * @return return the Personage of the player indexPLayer.
+     */
     private Personage getPersonageList(int indexPlayer){
         return this.personages.get(indexPlayer-1);
     }
@@ -249,7 +256,7 @@ public class Arena {
     }
 
     /**
-     * Display the possible attacks depending of the personage class
+     * Display the possible attacks depending of the personage class.
      * @param indexPlayer The number of the player e.g. "Joueur indexPlayer" == "Joueur 1" if indexPlayer = 1.
      */
     private void chooseAttack(int indexPlayer){
@@ -263,7 +270,7 @@ public class Arena {
 
     /**
      * @param fightTurn the turn number (One player attack during each turn)
-     * @return the index of the Player that will attack
+     * @return the index of the Player that will attack.
      */
     private int getAssailantIndex(int fightTurn){
         return fightTurn % this.nbPlayer + 1;

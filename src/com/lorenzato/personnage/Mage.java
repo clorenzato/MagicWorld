@@ -2,6 +2,12 @@ package com.lorenzato.personnage;
 
 public class Mage extends Personage {
 
+    /** CONSTRUCTORS
+     * @param level Le niveau du personnage
+     * @param strength Sa force
+     * @param agility Son agilité
+     * @param intelligence Son intelligence
+     */
     public Mage(int level, int strength, int agility, int intelligence) {
         super(level, strength, agility, intelligence);
         this.personageName = "Merlin";
@@ -14,36 +20,34 @@ public class Mage extends Personage {
         this.attacksType = AttacksType.valueOf("MAGE");
     }
 
+    /**
+     * Attaque Basique - Boule de Feu :
+     * Effectue des dommages égaux à l’intelligence du joueur sur l’adversaire.
+     * @param target La cible visée par l'attaque
+     */
     @Override
     public void basicAttack(Personage target) {
-        // Attaque Basique - Boule de Feu :
-        // Effectue des dommages égaux à l’intelligence du joueur sur l’adversaire.
         target.receivedDamage(this.intelligence);
     }
 
+    /**
+     * Attaque Spéciale - Soin :
+     * Le joueur soigne sa vie et regagne sa quantité d’intelligence fois 2 en points de vie.
+     * Attention, il ne peut pas avoir plus de vie qu’il n’en avait au départ.
+     * @param target La cible visée par l'attaque.
+     */
     @Override
     public void specialAttack(Personage target) {
-        // Attaque Spéciale - Soin :
-        // Le joueur soigne sa vie et regagne sa quantité d’intelligence fois 2 en points de vie.
-        // Attention, il ne peut pas avoir plus de vie qu’il n’en avait au départ.
-        // System.out.println("Attaque Spéciale - Soin :");
         target.receivedDamage(0);
         this.life += (this.intelligence * 2);
         if (this.life > (this.level*5)) this.life = this.level*5;
+        System.out.println(this.personageName + " soinge ses blessures, vie = "+ this.life + " / " + (this.level*5));
     }
 
-    @Override
-    public void receivedDamage(int damage) {
-        this.life -= damage;
-        if (this.life <= 0) {
-            this.life = 0;
-        }
-        if (damage != 0) {
-            System.out.println(getPersoName() + " à reçu " + damage +" de dommages ");
-            System.out.println("Il lui reste : " + this.life + " / " + (this.level*5) + " pts de vie");
-        }
-    }
-
+    /**
+     * Description du personnage
+     * @param indexPlayer L'index du joueur dont le personnage est décrit.
+     */
     @Override
     public void persoDescription(int indexPlayer) {
         System.out.println(this.personageName + " je suis le Mage Joueur " + indexPlayer + " niveau " + this.level +
@@ -51,6 +55,10 @@ public class Mage extends Personage {
                 " d'agilité et " + this.intelligence + " d'intelligence !");
     }
 
+    /**
+     * Affiche le nom du personnage mort
+     * @return true si le personage est mort, vie  = 0.
+     */
     @Override
     public boolean isDead() {
         if (this.life == 0) {
@@ -60,6 +68,9 @@ public class Mage extends Personage {
             return false;
     }
 
+    /**
+     * @return la description de l'attaque cf. l'énumérationAttacksType.
+     */
     @Override
     public AttacksType getAttacksType() {
         return this.attacksType;

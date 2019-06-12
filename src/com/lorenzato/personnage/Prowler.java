@@ -2,6 +2,12 @@ package com.lorenzato.personnage;
 
 public class Prowler extends Personage {
 
+    /** CONSTRUCTORS
+     * @param level Le niveau du personnage
+     * @param strength Sa force
+     * @param agility Son agilité
+     * @param intelligence Son intelligence
+     */
     public Prowler(int level, int strength, int agility, int intelligence) {
         super(level, strength, agility, intelligence);
         this.personageName = "Robin";
@@ -14,33 +20,33 @@ public class Prowler extends Personage {
         this.attacksType = AttacksType.valueOf("PROWLER");
     }
 
+    /**
+     * Attaque Basique - Tir à l’Arc :
+     * Effectue des dommages égaux à l’agilité du joueur sur l’adversaire.
+     * @param target La cible visée par l'attaque
+     */
     @Override
     public void basicAttack(Personage target) {
-        // Attaque Basique - Tir à l’Arc :
-        // Effectue des dommages égaux à l’agilité du joueur sur l’adversaire.
         target.receivedDamage(this.agility);
     }
 
+    /**
+     * Attaque Spéciale - Soin :
+     * Attaque Spéciale - Concentration : Le joueur gagne son niveau divisé par 2 en agilité
+     * System.out.println("Attaque Spéciale - Concentration");
+     * @param target La cible visée par l'attaque.
+     */
     @Override
     public void specialAttack(Personage target) {
-        // Attaque Spéciale - Concentration : Le joueur gagne son niveau divisé par 2 en agilité
-        // System.out.println("Attaque Spéciale - Concentration");
         target.receivedDamage(0);
         this.agility += (this.level/2);
+        System.out.println(this.personageName +" se concentre, sont agilité augmente à "+ this.agility);
     }
 
-    @Override
-    public void receivedDamage(int damage) {
-        this.life -= damage;
-        if (this.life <= 0) {
-            this.life = 0;
-        }
-        if (damage != 0) {
-            System.out.println(getPersoName() + " à reçu " + damage +" de dommages ");
-            System.out.println("Il lui reste : " + this.life + " / " + (this.level*5) + " pts de vie");
-        }
-    }
-
+    /**
+     * Description du personnage
+     * @param indexPlayer L'index du joueur dont le personnage est décrit.
+     */
     @Override
     public void persoDescription(int indexPlayer) {
         System.out.println(this.personageName + " je suis le Rôdeur Joueur " + indexPlayer + " niveau " + this.level +
@@ -48,6 +54,10 @@ public class Prowler extends Personage {
                 " d'agilité et " + this.intelligence + " d'intelligence !");
     }
 
+    /**
+     * Affiche le nom du personnage mort
+     * @return true si le personage est mort, vie  = 0.
+     */
     @Override
     public boolean isDead() {
         if (this.life == 0) {
@@ -57,6 +67,9 @@ public class Prowler extends Personage {
             return false;
     }
 
+    /**
+     * @return la description de l'attaque cf. l'énumérationAttacksType.
+     */
     @Override
     public AttacksType getAttacksType() {
         return this.attacksType;

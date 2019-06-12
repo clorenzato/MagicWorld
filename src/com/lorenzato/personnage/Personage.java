@@ -11,7 +11,7 @@ public abstract class Personage implements Attacks{
     protected int agility;
     protected int intelligence;
     protected String personageName;
-    protected AttacksType attacksType;
+    AttacksType attacksType;
 
     public Personage(int level, int strength, int agility, int intelligence) {
         this.level = level;
@@ -38,6 +38,12 @@ public abstract class Personage implements Attacks{
         return intelligence;
     }
 
+
+    public String getPersoName() {
+        return this.personageName;
+    }
+
+    @Override
     public void receivedDamage(int damage) {
         this.life -= damage;
         if (this.life <= 0) {
@@ -45,15 +51,11 @@ public abstract class Personage implements Attacks{
         }
         if (damage != 0) {
             System.out.println(getPersoName() + " à reçu " + damage +" de dommages ");
-            System.out.println("Il lui reste : " + this.life + " / " + (this.level*5) + " pts de vie");
+            if (this.life != 0)
+                System.out.println("Il lui reste : " + this.life + " / " + (this.level*5) + " pts de vie");
         }
     }
 
-    public String getPersoName() {
-        return this.personageName;
-    }
-
-    public abstract boolean isDead();
     public abstract void persoDescription(int indexPlayer);
 
 }

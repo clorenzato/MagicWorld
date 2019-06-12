@@ -2,7 +2,12 @@ package com.lorenzato.personnage;
 
 public class Warrior extends Personage {
 
-
+    /** CONSTRUCTORS
+     * @param level Le niveau du personnage
+     * @param strength Sa force
+     * @param agility Son agilité
+     * @param intelligence Son intelligence
+     */
     public Warrior(int level, int strength, int agility, int intelligence) {
         super(level, strength, agility, intelligence);
         this.personageName = "Brutus";
@@ -15,36 +20,33 @@ public class Warrior extends Personage {
         this.attacksType = AttacksType.valueOf("WARRIOR");
     }
 
+    /**
+     * Attaque Basique - Coup d’Épée :
+     * Effectue des dommages égaux à la force du joueur sur l’adversaire.
+     * @param target La cible visée par l'attaque.
+     */
     @Override
     public void basicAttack(Personage target) {
-        // Attaque Basique - Coup d’Épée :
-        // Effectue des dommages égaux à la force du joueur sur l’adversaire.
-        // System.out.print("Attaque Basique - Coup d’Épée : ");
         target.receivedDamage(this.strength);
     }
 
+    /**
+     * Attaque Spéciale - Coup de Rage :
+     * Effectue des dommages égaux à la force du joueur fois deux sur l’adversaire.
+     * Le joueur lançant l'attaque perd de la vitalité : la valeur de sa force divisée par 2.
+     * @param target La cible visée par l'attaque.
+     */
     @Override
     public void specialAttack(Personage target) {
-        // Attaque Spéciale - Coup de Rage :
-        // Effectue des dommages égaux à la force du joueur fois deux sur l’adversaire.
-        // Le joueur lançant l'attaque perd de la vitalité : la valeur de sa force divisée par 2.
-        // System.out.print("Attaque Spéciale - Coup de Rage : ");
         target.receivedDamage(this.strength * 2);
         this.strength /= 2;
+        System.out.println(this.personageName + " perd la moitié de sa force, force = " + this.strength);
     }
 
-    @Override
-    public void receivedDamage(int damage) {
-        this.life -= damage;
-        if (this.life <= 0) {
-            this.life = 0;
-        }
-        if (damage != 0) {
-            System.out.println(getPersoName() + " à reçu " + damage +" de dommages ");
-            System.out.println("Il lui reste : " + this.life + " / " + (this.level*5) + " pts de vie");
-        }
-    }
-
+    /**
+     * Description du personnage
+     * @param indexPlayer L'index du joueur dont le personnage est décrit.
+     */
     @Override
     public void persoDescription(int indexPlayer) {
         System.out.println(this.personageName + " je suis le Guerrier Joueur " + indexPlayer + " niveau " + this.level +
@@ -52,6 +54,10 @@ public class Warrior extends Personage {
                 " d'agilité et " + this.intelligence + " d'intelligence !");
     }
 
+    /**
+     * Affiche le nom du personnage mort
+     * @return true si le personage est mort, vie  = 0.
+     */
     @Override
     public boolean isDead() {
         if (this.life == 0) {
@@ -61,6 +67,9 @@ public class Warrior extends Personage {
             return false;
     }
 
+    /**
+     * @return la description de l'attaque cf. l'énumérationAttacksType.
+     */
     @Override
     public AttacksType getAttacksType() {
         return this.attacksType;

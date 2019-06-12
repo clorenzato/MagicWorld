@@ -13,13 +13,7 @@ public class Prowler extends Personage {
         this.personageName = "Robin";
         this.attacksType = AttacksType.valueOf("PROWLER");
     }
-
-    public Prowler(int level, int strength, int agility, int intelligence, String persoName) {
-        super(level, strength, agility, intelligence);
-        this.personageName = persoName;
-        this.attacksType = AttacksType.valueOf("PROWLER");
-    }
-
+    
     /**
      * Attaque Basique - Tir à l’Arc :
      * Effectue des dommages égaux à l’agilité du joueur sur l’adversaire.
@@ -49,8 +43,8 @@ public class Prowler extends Personage {
      */
     @Override
     public void persoDescription(int indexPlayer) {
-        System.out.println(this.personageName + " je suis le Rôdeur Joueur " + indexPlayer + " niveau " + this.level +
-                " je possède " + this.life + "de vitalité, " + this.strength + " de force, " + this.agility +
+        System.out.println(this.personageName + " je suis le Rôdeur du Joueur " + indexPlayer + ", de niveau " + this.level +
+                ". Je possède " + this.life + " de vitalité, " + this.strength + " de force, " + this.agility +
                 " d'agilité et " + this.intelligence + " d'intelligence !");
     }
 

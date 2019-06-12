@@ -2,7 +2,7 @@ package com.lorenzato.personnage;
 
 public class Warrior extends Personage {
 
-    /** CONSTRUCTORS
+    /** CONSTRUCTOR
      * @param level Le niveau du personnage
      * @param strength Sa force
      * @param agility Son agilité
@@ -11,12 +11,6 @@ public class Warrior extends Personage {
     public Warrior(int level, int strength, int agility, int intelligence) {
         super(level, strength, agility, intelligence);
         this.personageName = "Brutus";
-        this.attacksType = AttacksType.valueOf("WARRIOR");
-    }
-
-    public Warrior(int level, int strength, int agility, int intelligence, String personageName) {
-        super(level, strength, agility, intelligence);
-        this.personageName = personageName;
         this.attacksType = AttacksType.valueOf("WARRIOR");
     }
 
@@ -49,8 +43,8 @@ public class Warrior extends Personage {
      */
     @Override
     public void persoDescription(int indexPlayer) {
-        System.out.println(this.personageName + " je suis le Guerrier Joueur " + indexPlayer + " niveau " + this.level +
-                " je possède " + this.life + "de vitalité, " + this.strength + " de force, " + this.agility +
+        System.out.println(this.personageName + " je suis le Guerrier du Joueur " + indexPlayer + ", de niveau " + this.level +
+                ". Je possède " + this.life + " de vitalité, " + this.strength + " de force, " + this.agility +
                 " d'agilité et " + this.intelligence + " d'intelligence !");
     }
 

@@ -2,7 +2,7 @@ package com.lorenzato.personnage;
 
 public class Mage extends Personage {
 
-    /** CONSTRUCTORS
+    /** CONSTRUCTOR
      * @param level Le niveau du personnage
      * @param strength Sa force
      * @param agility Son agilité
@@ -11,12 +11,6 @@ public class Mage extends Personage {
     public Mage(int level, int strength, int agility, int intelligence) {
         super(level, strength, agility, intelligence);
         this.personageName = "Merlin";
-        this.attacksType = AttacksType.valueOf("MAGE");
-    }
-
-    public Mage(int level, int strength, int agility, int intelligence, String persoName) {
-        super(level, strength, agility, intelligence);
-        this.personageName = persoName;
         this.attacksType = AttacksType.valueOf("MAGE");
     }
 
@@ -50,8 +44,8 @@ public class Mage extends Personage {
      */
     @Override
     public void persoDescription(int indexPlayer) {
-        System.out.println(this.personageName + " je suis le Mage Joueur " + indexPlayer + " niveau " + this.level +
-                " je possède " + this.life + "de vitalité, " + this.strength + " de force, " + this.agility +
+        System.out.println(this.personageName + " je suis le Mage du Joueur " + indexPlayer + ", de niveau " + this.level +
+                ". Je possède " + this.life + " de vitalité, " + this.strength + " de force, " + this.agility +
                 " d'agilité et " + this.intelligence + " d'intelligence !");
     }
 

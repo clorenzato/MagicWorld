@@ -60,7 +60,7 @@ class PersonageTest {
     }
 
     @Test
-    void Given_Warrior_When_SpecialAttack_Then_WarriortLoseHalfOfHisStrength() {
+    void Given_Warrior_When_SpecialAttack_Then_WarriorLoseHalfOfHisStrength() {
         Mage target = new Mage(100,0,0,0);
         Warrior warrior = new Warrior(100, 50,0,0);
         assertEquals( 50 ,warrior.getStrength(), 1);
@@ -84,10 +84,10 @@ class PersonageTest {
 
 
     @Test
-    void Given_Mage_When_SpecialAttack_Then_TargetDoNotLoseLifeAndMageWin100OfLife() {
+    void Given_Mage_When_SpecialAttack_Then_MageWin100OfLife() {
         Warrior target = new Warrior(100,100,0,0);
         Mage mage = new Mage(100, 0,0,50);
-        assertEquals(500 ,target.getLife());
+        assertEquals(500 ,mage.getLife());
         target.basicAttack(mage);
         assertEquals(400 ,mage.getLife(),1);
         mage.specialAttack(target);
@@ -96,16 +96,16 @@ class PersonageTest {
     }
 
     @Test
-    void Given_Mage_When_SpecialAttack_Then_WarriortLoseHalfOfHisStrength() {
-        Mage target = new Mage(100,0,0,0);
-        Warrior warrior = new Warrior(100, 50,0,0);
-        assertEquals( 50 ,warrior.getStrength(), 1);
-        warrior.specialAttack(target);
-        assertEquals( 25 ,warrior.getStrength(), 1);
-        warrior.specialAttack(target);
-        assertEquals( 12 ,warrior.getStrength(),1);
-        warrior.specialAttack(target);
-        assertEquals( 6 ,warrior.getStrength(),1);
+    void Given_Mage_When_SpecialAttack_Then_MageWin100OfLifeAnd0OfLife() {
+        Warrior target = new Warrior(100,100,0,0);
+        Mage mage = new Mage(100, 0,0,50);
+        assertEquals(500 ,mage.getLife());
+        target.basicAttack(mage);
+        assertEquals(400 ,mage.getLife(),1);
+        mage.specialAttack(target);
+        assertEquals(500 ,mage.getLife(),1);
+        mage.specialAttack(target);
+        assertEquals(500 ,mage.getLife(),1);
     }
 }
 

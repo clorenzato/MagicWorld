@@ -150,7 +150,7 @@ public class Arena {
     /**
      * Allow for select the value of a given (attributeName) attribute
      * @param attributeName The Name of the attribute to display to the user
-     * @return
+     * @return the value of the attribute (0-100)
      */
     int chooseAttribute(String attributeName) {
 

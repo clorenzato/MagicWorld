@@ -135,10 +135,10 @@ public class Arena {
 
             levelGood = ((playerLevel >= 1) && (playerLevel <= this.levelMax));
             if (!levelGood) {
-                if (playerLevel < 0)
+                if (playerLevel <= 0)
                     System.err.println("Veuillez choisir un niveau > 0");
                 else if (playerLevel > this.levelMax)
-                    playerLevel = this.levelMax;
+                    System.err.println("Veuillez choisir un niveau < " + this.levelMax);
             }
 
         } while(!levelGood);

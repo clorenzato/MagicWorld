@@ -136,15 +136,14 @@ public class Arena {
             }
         } while(!choiceGood);
 
-
-    return personageClass;
+        return personageClass;
     }
 
     /**
      * Allow for choosing the the level of the personage of the different players.
      * @return The chosen Level (from 1 to 100).
      */
-    private int choosePersonageLevel() {
+    int choosePersonageLevel() {
 
         int playerLevel;
         boolean levelGood;
@@ -155,14 +154,15 @@ public class Arena {
 
             levelGood = ((playerLevel >= 1) && (playerLevel <= this.levelMax));
             if (!levelGood) {
-                if (playerLevel < 0)
+                if (playerLevel <= 0)
                     System.err.println("Veuillez choisir un niveau > 0");
-                else if (playerLevel > this.levelMax)
+                else
                     System.err.println("Veuillez choisir un niveau < "+ this.levelMax);
             }
 
         } while(!levelGood);
         this.attributesAvailable = playerLevel;
+
         return playerLevel;
     }
 
@@ -223,7 +223,7 @@ public class Arena {
      * @param attributeName The Name of the attribute to display to the user
      * @return the value of the attribute (0-100).
      */
-    private int increaseAttribute(String attributeName, int currentAttributeValue) {
+    int increaseAttribute(String attributeName, int currentAttributeValue) {
 
         if (attributesAvailable != 0) {
 
@@ -283,7 +283,7 @@ public class Arena {
      * @param indexPlayer The number of the player e.g. "Joueur indexPlayer" == "Joueur 1" if indexPlayer = 1.
      * @return return the Personage of the player indexPLayer.
      */
-    private Personage getPersonageList(int indexPlayer){
+     Personage getPersonageList(int indexPlayer){
         return this.personages.get(indexPlayer-1);
     }
 

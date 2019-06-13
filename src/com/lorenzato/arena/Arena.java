@@ -171,7 +171,7 @@ public class Arena {
      * @param attributeName The Name of the attribute to display to the user
      * @return the value of the attribute (0-100).
      */
-    private int chooseAttribute(String attributeName) {
+    int chooseAttribute(String attributeName) {
 
         if (attributesAvailable != 0) {
 

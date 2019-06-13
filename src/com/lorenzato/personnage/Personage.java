@@ -47,11 +47,16 @@ public abstract class Personage implements Attacks{
             this.life = 0;
         }
         if (damage != 0) {
-            System.out.println(this.personageName + " à reçu " + damage +" de dommages ");
+            System.out.println(this.personageName + " a reçu " + damage +" de dommages.");
             if (this.life != 0)
-                System.out.println("Il lui reste : " + this.life + " / " + (this.level*5) + " pts de vie");
+                System.out.println("Il lui reste : " + this.life + "/" + (this.level*5) + " pts de vie.");
+        } else {
+            System.out.println(this.personageName + " n'a reçu aucun dommage ");
+            System.out.println("Il lui reste : " + this.life + "/" + (this.level*5) + " pts de vie.");
         }
     }
 
     public abstract void personageDescription(int indexPlayer);
+    public abstract int getSpecialDamage();
+    public abstract int getBasicDamage();
 }

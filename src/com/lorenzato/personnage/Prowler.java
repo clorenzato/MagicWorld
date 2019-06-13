@@ -21,7 +21,7 @@ public class Prowler extends Personage {
      */
     @Override
     public void basicAttack(Personage target) {
-        target.receivedDamage(this.agility);
+        target.receivedDamage(this.getBasicDamage());
     }
 
     /**
@@ -33,8 +33,8 @@ public class Prowler extends Personage {
     @Override
     public void specialAttack(Personage target) {
         target.receivedDamage(0);
-        this.agility += (this.level/2);
-        System.out.println(this.personageName +" se concentre, sont agilité augmente à "+ this.agility);
+        this.agility += getSpecialDamage();
+        System.out.println(this.personageName +" se concentre, sont agilité augmente à "+ this.agility + "pts");
     }
 
     /**
@@ -67,5 +67,25 @@ public class Prowler extends Personage {
     @Override
     public AttacksType getAttacksType() {
         return this.attacksType;
+    }
+
+    @Override
+    public int getSpecialDamage() {
+        return this.level/2;
+    }
+
+    @Override
+    public int getBasicDamage() {
+        return this.agility;
+    }
+
+    @Override
+    public String  getSpecialDamageToString() {
+        return ( "+" + this.level/2 + " pts d'agilité");
+    }
+
+    @Override
+    public String getBasicDamageToString() {
+        return (this.agility + " pts de dommages");
     }
 }

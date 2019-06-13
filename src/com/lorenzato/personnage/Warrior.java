@@ -21,7 +21,7 @@ public class Warrior extends Personage {
      */
     @Override
     public void basicAttack(Personage target) {
-        target.receivedDamage(this.strength);
+        target.receivedDamage(getBasicDamage());
     }
 
     /**
@@ -32,7 +32,7 @@ public class Warrior extends Personage {
      */
     @Override
     public void specialAttack(Personage target) {
-        target.receivedDamage(this.strength * 2);
+        target.receivedDamage(getSpecialDamage());
         this.strength /= 2;
         System.out.println(this.personageName + " perd la moitié de sa force, force = " + this.strength);
     }
@@ -67,5 +67,25 @@ public class Warrior extends Personage {
     @Override
     public AttacksType getAttacksType() {
         return this.attacksType;
+    }
+
+    @Override
+    public int getSpecialDamage() {
+        return this.strength * 2;
+    }
+
+    @Override
+    public int getBasicDamage() {
+        return this.strength;
+    }
+
+    @Override
+    public String getSpecialDamageToString() {
+        return ((2*this.strength) + " pts de dommages, -" + (this.strength / 2) + " de Force)");
+    }
+
+    @Override
+    public String getBasicDamageToString() {
+        return (this.strength + " pts de dommages");
     }
 }

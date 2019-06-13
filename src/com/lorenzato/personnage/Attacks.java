@@ -6,4 +6,6 @@ public interface Attacks {
     void receivedDamage(int damage);
     boolean isDead();
     AttacksType getAttacksType();
+    String  getSpecialDamageToString();
+    String getBasicDamageToString();
 }

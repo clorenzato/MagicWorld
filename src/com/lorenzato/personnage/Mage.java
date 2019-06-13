@@ -21,7 +21,7 @@ public class Mage extends Personage {
      */
     @Override
     public void basicAttack(Personage target) {
-        target.receivedDamage(this.intelligence);
+        target.receivedDamage(this.getBasicDamage());
     }
 
     /**
@@ -33,9 +33,9 @@ public class Mage extends Personage {
     @Override
     public void specialAttack(Personage target) {
         target.receivedDamage(0);
-        this.life += (this.intelligence * 2);
+        this.life += this.getSpecialDamage();
         if (this.life > (this.level*5)) this.life = this.level*5;
-        System.out.println(this.personageName + " soinge ses blessures, vie = "+ this.life + " / " + (this.level*5));
+        System.out.println(this.personageName + " soigne ses blessures, vie = "+ this.life + "/" + (this.level*5)+".");
     }
 
     /**
@@ -63,7 +63,7 @@ public class Mage extends Personage {
     }
 
     /**
-     * @return la description de l'attaque cf. l'énumérationAttacksType.
+     * @return la description de l'attaque cf. l'énumération AttacksType.
      */
     @Override
     public AttacksType getAttacksType() {
@@ -71,5 +71,24 @@ public class Mage extends Personage {
     }
 
 
+    @Override
+    public int getSpecialDamage() {
+        return this.intelligence * 2;
+    }
+
+    @Override
+    public int getBasicDamage() {
+        return this.intelligence;
+    }
+
+    @Override
+    public String getSpecialDamageToString() {
+        return ("+" + (this.intelligence * 2) + " pts de vie");
+    }
+
+    @Override
+    public String getBasicDamageToString() {
+        return (this.intelligence + " pts de dommages");
+    }
 }
 
